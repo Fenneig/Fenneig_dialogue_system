@@ -1,5 +1,15 @@
 ## [1.0.0]
 
+### Update
+
+- Unity minimum version for graph view experemental system
+
+### Removed
+
+- Example scene creates erros and can't be open through downloads, so we remove it from package
+
+## [1.0.0]
+
 ### Added
 
 - Add base editor and runtime functional such as:
