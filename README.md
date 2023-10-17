@@ -1,5 +1,7 @@
 Dialogue system tool
 
+Require unity version 2022.3+ 
+
 How to use:
 
 1. Create a Dialogue container scriptable object (path: Create>Dialogue>Dialogue container)
