@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Fenneig_Dialogue_Editor.Dialogue_Editor.Runtime.Enums;
-using Fenneig_Dialogue_Editor.Dialogue_Editor.Runtime.SO;
+using Fenneig_Dialogue_Editor.Runtime.Enums;
+using Fenneig_Dialogue_Editor.Runtime.SO;
+using Fenneig_Dialogue_Editor.Runtime.SO.Dialogue;
 using UnityEngine;
 
-namespace Fenneig_Dialogue_Editor.Dialogue_Editor.CSV_Tool
+namespace Fenneig_Dialogue_Editor.CSV_Tool
 {
     public class SaveCSV
     {
@@ -14,8 +15,8 @@ namespace Fenneig_Dialogue_Editor.Dialogue_Editor.CSV_Tool
         private string _csvFileName = "DialogueCSV_Save.csv";
         private string _csvSeparator = ",";
         private string[] _csvHeader;
-        private string _idName = "Guid ID";
-        private string _name = "Name";
+        private string _nodeID = "Node Guid ID";
+        private string _textID = "Text Guid ID";
         private string _dialogueName = "Dialogue name";
 
         private string DirectoryPath => $"{Application.dataPath}/{_csvDirectoryName}";
@@ -25,79 +26,69 @@ namespace Fenneig_Dialogue_Editor.Dialogue_Editor.CSV_Tool
         public void Save()
         {
             List<DialogueContainerSO> dialogueContainers = Helper.FindAllDialogueContainers();
+            
             CreateFile();
 
-            dialogueContainers.ForEach(dialogueContainer =>
+            foreach (DialogueContainerSO dialogueContainer in dialogueContainers)
             {
-                dialogueContainer.DialogueNodeData.ForEach(nodeData =>
+                foreach (DialogueData nodeData in dialogueContainer.DialogueData)
                 {
-                    List<string> texts = new()
+                    foreach (DialogueDataText textData in nodeData.DialogueDataTexts)
                     {
-                        nodeData.NodeGuid, 
-                        dialogueContainer.name
-                    };
-
-                    foreach (var languageType in (LanguageType[])Enum.GetValues(typeof(LanguageType)))
-                    {
-                        string temp = nodeData.Texts.Find(language => language.LanguageType == languageType).LanguageGenericType.Replace("\"", "\"\"");
-                        texts.Add($"\"{temp}\"");
-                    }
-                    
-                    AppendToFile(texts);
-                    
-                    texts = new() 
-                    {
-                        $"{nodeData.NodeGuid}-{_name}",
-                        dialogueContainer.name
-                    };
-                    
-                    foreach (var languageType in (LanguageType[])Enum.GetValues(typeof(LanguageType)))
-                    {
-                        string temp = nodeData.CharacterName.Find(language => language.LanguageType == languageType).LanguageGenericType.Replace("\"", "\"\"");
-                        texts.Add($"\"{temp}\"");
-                    }
-                    
-                    AppendToFile(texts);
-                    
-                    nodeData.DialogueNodePorts.ForEach(nodePort =>
-                    {
-                        texts = new()
+                        List<string> texts = new List<string>
                         {
-                            nodePort.PortGuid,
-                            dialogueContainer.name
+                            dialogueContainer.name,
+                            nodeData.NodeGuid,
+                            textData.GuidID.Value
                         };
 
-                        foreach (var languageType in (LanguageType[])Enum.GetValues(typeof(LanguageType)))
+                        foreach (LanguageType languageType in (LanguageType[]) Enum.GetValues(typeof(LanguageType)))
                         {
-                            string temp = nodePort.TextLanguages.Find(language => language.LanguageType == languageType).LanguageGenericType.Replace("\"", "\"\"");
-                            texts.Add($"\"{temp}\"");
+                            string tmp = textData.Text.Find(language => language.LanguageType == languageType)
+                                .LanguageGenericType.Replace("\"", "\"\"");
+                            texts.Add($"\"{tmp}\"");
                         }
-                        AppendToFile(texts);
-                    });
-                    
-                });
-            });
-        }
 
-        private void VerifyDirectory()
-        {
-            string directory = DirectoryPath;
-            if (!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
+                        AppendToFile(texts);
+                    }
+                    
+                    //TODO: Add ability to save character name
+                }
+                foreach (ChoiceData nodeData in dialogueContainer.ChoiceData)
+                {
+                    List<string> texts = new List<string>
+                    {
+                        dialogueContainer.name,
+                        nodeData.NodeGuid,
+                        "Choice Dont have Text ID"
+                    };
+
+                    foreach (LanguageType languageType in (LanguageType[]) Enum.GetValues(typeof(LanguageType)))
+                    {
+                        string tmp = nodeData.Text.Find(language => language.LanguageType == languageType)
+                            .LanguageGenericType.Replace("\"", "\"\"");
+                        texts.Add($"\"{tmp}\"");
+                    }
+
+                    AppendToFile(texts);
+                }
             }
         }
 
-        private void MakeHeader()
+        private void AppendToFile(List<string> strings)
         {
-            List<string> headerText = new()
+            using StreamWriter sw = File.AppendText(FilePath);
+            string finalString = "";
+            foreach (var text in strings)
             {
-                _idName,
-                _dialogueName
-            };
-            headerText.AddRange(from language in (LanguageType[]) Enum.GetValues(typeof(LanguageType)) select language.ToString());
+                if (finalString != "")
+                {
+                    finalString += _csvSeparator;
+                }
+                finalString += text;
+            }
 
-            _csvHeader = headerText.ToArray();
+            sw.WriteLine(finalString);
         }
 
         private void CreateFile()
@@ -119,17 +110,26 @@ namespace Fenneig_Dialogue_Editor.Dialogue_Editor.CSV_Tool
             sw.WriteLine(finalString);
         }
 
-        private void AppendToFile(List<string> strings)
+        private void MakeHeader()
         {
-            using StreamWriter sw = File.AppendText(FilePath);
-            string finalString = "";
-            foreach (var text in strings)
+            List<string> headerText = new()
             {
-                if (finalString != "") finalString += _csvSeparator;
-                finalString += text;
-            }
+                _dialogueName,
+                _nodeID,
+                _textID
+            };
+            headerText.AddRange(from language in (LanguageType[]) Enum.GetValues(typeof(LanguageType)) select language.ToString());
 
-            sw.WriteLine(finalString);
+            _csvHeader = headerText.ToArray();
+        }
+
+        private void VerifyDirectory()
+        {
+            string directory = DirectoryPath;
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
         }
     }
 }

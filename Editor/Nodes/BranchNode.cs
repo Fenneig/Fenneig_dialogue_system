@@ -1,22 +1,19 @@
-﻿using System.Collections.Generic;
-using Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Graph_view;
-using Fenneig_Dialogue_Editor.Dialogue_Editor.Runtime.NodesData;
+﻿using Fenneig_Dialogue_Editor.Editor.Graph_view;
+using Fenneig_Dialogue_Editor.Runtime.SO.Dialogue;
+using Fenneig_Dialogue_Editor.Runtime.SO.Values.Events;
 using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-namespace Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Nodes
+namespace Fenneig_Dialogue_Editor.Editor.Nodes
 {
     public class BranchNode : BaseNode
     {
-        private List<BranchStringIdData> _branchStringIdData = new();
+        private const string BRANCH_NODE_STYLE_SHEET = "USS/Nodes/BranchNodeStyleSheet";
 
-        public List<BranchStringIdData> BranchStringIdData => _branchStringIdData;
-
+        public BranchData BranchData { get; set; } = new();
         public BranchNode() { }
 
-        public BranchNode(Vector2 position, DialogueEditorWindow editorWindow, DialogueGraphView dialogueGraphView) :
-            base(position, editorWindow, dialogueGraphView)
+        public BranchNode(Vector2 position, DialogueEditorWindow editorWindow, DialogueGraphView dialogueGraphView) : base(position, editorWindow, dialogueGraphView, BRANCH_NODE_STYLE_SHEET)
         {
             title = "Branch";
             
@@ -36,62 +33,9 @@ namespace Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Nodes
             titleButtonContainer.Add(menu);
         }
 
-        public void AddCondition(BranchStringIdData pyramidBranchStringIdData = null)
+        public void AddCondition(EventDataStringCondition stringEvent = null)
         {
-            BranchStringIdData tempBranchStringIdData = new();
-
-            if (pyramidBranchStringIdData != null)
-            {
-                tempBranchStringIdData.IdNumber = pyramidBranchStringIdData.IdNumber;
-                tempBranchStringIdData.StringEvent = pyramidBranchStringIdData.StringEvent;
-            }
-            _branchStringIdData.Add(tempBranchStringIdData);
-            
-            // Container of all objects
-            Box boxContainer = new();
-            boxContainer.AddToClassList("BranchBox");
-            
-            // Text
-            TextField textField = new();
-            textField.AddToClassList("BranchText");
-            boxContainer.Add(textField);
-            textField.RegisterValueChangedCallback(value =>
-            {
-                tempBranchStringIdData.StringEvent = value.newValue;
-            });
-            textField.SetValueWithoutNotify(tempBranchStringIdData.StringEvent);
-            
-            // ID number
-            IntegerField integerField = new();
-            integerField.AddToClassList("BranchID");
-            boxContainer.Add(integerField);
-            integerField.RegisterValueChangedCallback(value =>
-            {
-                tempBranchStringIdData.IdNumber = value.newValue;
-            });
-            integerField.SetValueWithoutNotify(tempBranchStringIdData.IdNumber);
-            
-            // Remove button
-            Button closeButton = new()
-            {
-                text = "X"
-            };
-            closeButton.clicked += () =>
-            {
-                DeleteBox(boxContainer);
-                _branchStringIdData.Remove(tempBranchStringIdData);
-            };
-            closeButton.AddToClassList("BranchButton");
-            boxContainer.Add(closeButton);
-            
-            mainContainer.Add(boxContainer);
-            RefreshExpandedState();
-        }
-        
-        private void DeleteBox(Box boxContainer)
-        {
-            mainContainer.Remove(boxContainer);
-            RefreshExpandedState();
+           AddStringConditionEventBuild(BranchData.EventDataStringConditions, stringEvent);
         }
     }
 }

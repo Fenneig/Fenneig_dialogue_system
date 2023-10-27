@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
-using Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Nodes;
+using Fenneig_Dialogue_Editor.Editor.Nodes;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Graph_view
+namespace Fenneig_Dialogue_Editor.Editor.Graph_view
 {
     public class DialogueGraphView : GraphView
     {
-        private string _graphViewStyleSheet = "GraphViewStyleSheet";
+        private string _graphViewStyleSheet = "USS/GraphView/GraphViewStyleSheet";
         private DialogueEditorWindow _editorWindow;
         private NodeSearchWindow _searchWindow;
 
@@ -55,13 +55,14 @@ namespace Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Graph_view
         {
             List<Port> compatiblePorts = new();
             Port startPortView = startPort;
-            ports.ForEach((port) =>
+            ports.ForEach(port =>
             {
                 Port portView = port;
 
                 if (startPortView != portView &&
                     startPortView.node != portView.node &&
-                    startPortView.direction != port.direction)
+                    startPortView.direction != port.direction &&
+                    startPortView.portColor == portView.portColor)
                 {
                     compatiblePorts.Add(port);
                 }
@@ -71,13 +72,11 @@ namespace Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Graph_view
         }
 
         public StartNode CreateStartNode(Vector2 position) => new(position, _editorWindow, this);
-
-        public DialogueNode CreateDialogueNode(Vector2 position) => new(position, _editorWindow, this);
-            
-        public EventNode CreateEventNode(Vector2 position) => new(position, _editorWindow, this);
-            
+        public DialogueNode CreateDialogueNode(Vector2 position) => new(position, _editorWindow, this);            
+        public EventNode CreateEventNode(Vector2 position) => new(position, _editorWindow, this);            
         public EndNode CreateEndNode(Vector2 position) => new(position, _editorWindow, this);
         public BranchNode CreateBranchNode(Vector2 position) => new(position, _editorWindow, this);
-        
+        public ChoiceNode CreateChoiceNode(Vector2 position) => new(position, _editorWindow, this);
+
     }
 }

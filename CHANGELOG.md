@@ -1,3 +1,15 @@
+## [2.0.0]
+
+### Update
+
+- Refactor code, now insted of reference type object use value types
+- Add new node types
+- Add colors to different nodes
+
+### Removed
+
+- Names no more saves in CSV file for translation (Will fix in next version) 
+
 ## [1.0.2]
 
 ### Update

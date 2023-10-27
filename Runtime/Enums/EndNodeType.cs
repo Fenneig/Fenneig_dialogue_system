@@ -1,10 +1,9 @@
-﻿namespace Fenneig_Dialogue_Editor.Dialogue_Editor.Runtime.Enums
+﻿namespace Fenneig_Dialogue_Editor.Runtime.Enums
 {
     public enum EndNodeType
     {
-        End,
-        Repeat,
-        Goback,
-        ReturnToStart
+        End = 1,
+        Repeat = 2,
+        ReturnToStart = 3
     }
 }

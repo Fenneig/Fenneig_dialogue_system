@@ -1,20 +1,12 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Fenneig_Dialogue_Editor.Dialogue_Editor.CSV_Tool
+namespace Fenneig_Dialogue_Editor.CSV_Tool
 {
     public class CustomTools
     {
-        [MenuItem("CustomTools/Dialogue/Update Dialogue Languages")]
-        public static void UpdateDialogueLanguage()
-        {
-            UpdateLanguageType updateLanguageType = new();
-            updateLanguageType.UpdateLanguage();
-            
-            Debug.Log("<color=green>Dialogue languages updated successfully!</color>");
-        }
-
-        [MenuItem("CustomTools/Dialogue/Save to CSV")]
+        [MenuItem("Tools/Fenneig Dialogue/Save to CSV")]
+        [Tooltip("Saves all dialogues in Resources/Dialogue Editor/CSV File Folder")]
         public static void SaveToCSV()
         {
             SaveCSV saveCsv = new();
@@ -23,13 +15,14 @@ namespace Fenneig_Dialogue_Editor.Dialogue_Editor.CSV_Tool
             Debug.Log("<color=green>CSV saved successfully!</color>");
         }
 
-        [MenuItem("CustomTools/Dialogue/Load from CSV")]
+        [MenuItem("Tools/Fenneig Dialogue/Load from CSV")]
+        [Tooltip("Load dialogues from Resources/Dialogue Editor/CSV File Folder, should have DialogueCSV_Load.csv file in there")]
         public static void LoadFromCSV()
         {
             LoadCSV loadCsv = new();
-            loadCsv.Load();
-            
-            Debug.Log("<color=green>CSV loaded successfully!</color>");
+            Debug.Log(loadCsv.TryLoad()
+                ? "<color=green>CSV loaded successfully!</color>"
+                : "<color=red>CSV loaded unsuccessfully!</color>");
         }
     }
 }

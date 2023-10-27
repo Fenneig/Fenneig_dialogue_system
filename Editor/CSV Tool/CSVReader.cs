@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Fenneig_Dialogue_Editor.Dialogue_Editor.CSV_Tool
+namespace Fenneig_Dialogue_Editor.CSV_Tool
 {
     /// <summary>
     /// Mady by furukazu

@@ -1,81 +1,86 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Fenneig_Dialogue_Editor.Dialogue_Editor.Runtime.Enums;
-using Fenneig_Dialogue_Editor.Dialogue_Editor.Runtime.NodesData;
-using Fenneig_Dialogue_Editor.Dialogue_Editor.Runtime.SO;
-using UnityEditor;
+using Fenneig_Dialogue_Editor.Runtime.Enums;
+using Fenneig_Dialogue_Editor.Runtime.SO;
+using Fenneig_Dialogue_Editor.Runtime.SO.Dialogue;
 using UnityEngine;
 
-namespace Fenneig_Dialogue_Editor.Dialogue_Editor.CSV_Tool
+namespace Fenneig_Dialogue_Editor.CSV_Tool
 {
     public class LoadCSV
     {
         private string _csvDirectoryName = "Resources/Dialogue Editor/CSV File";
         private string _csvFileName = "DialogueCSV_Load.csv";
-        private string[] _csvHeader;
-        
-        private string _name = "-Name";
-
-        private string DirectoryPath => $"{Application.dataPath}/{_csvDirectoryName}";
-
 
         private CSVReader _csvReader = new();
-        
-        public void Load()
-        {
-            List<List<string>> result = _csvReader.ParseCSV(File.ReadAllText($"{DirectoryPath}/{_csvFileName}"));
 
-            List<string> headers = result[0];
-            List<DialogueContainerSO> dialogueContainers = Helper.FindAllDialogueContainers();
-            
-            dialogueContainers.ForEach(dialogueContainer =>
+        public bool TryLoad()
+        {
+            try
             {
-                dialogueContainer.DialogueNodeData.ForEach(nodeData =>
+                string text = File.ReadAllText($"{Application.dataPath}/{_csvDirectoryName}/{_csvFileName}");
+                List<List<string>> table = _csvReader.ParseCSV(text);
+
+                List<string> headers = table[0];
+
+                List<DialogueContainerSO> dialogueContainers = Helper.FindAllDialogueContainers();
+
+                dialogueContainers.ForEach(dialogueContainer =>
                 {
-                    LoadIntoNode(result,headers,nodeData);
-                    nodeData.DialogueNodePorts.ForEach(nodePort =>
+                    dialogueContainer.DialogueData.ForEach(nodeData =>
                     {
-                        LoadIntoNodePort(result, headers, nodePort);
+                        nodeData.DialogueDataTexts.ForEach(textData =>
+                        {
+                            LoadIntoDialogueNodeText(table, headers, textData);
+                        });
                     });
+
+                    dialogueContainer.ChoiceData.ForEach(nodeData => { LoadIntoChoiceNode(table, headers, nodeData); });
                 });
-                EditorUtility.SetDirty(dialogueContainer);
-                AssetDatabase.SaveAssets();
-            });
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+                return false;
+            }
         }
 
-        private void LoadIntoNode(List<List<string>> result, List<string> headers, DialogueNodeData nodeData)
+        private void LoadIntoDialogueNodeText(List<List<string>> table, List<string> headers, DialogueDataText textData)
         {
-            result.ForEach(line =>
+            table.ForEach(line =>
             {
-                if (!line[0].Contains(nodeData.NodeGuid)) return;
-                for (int i = 0; i < line.Count; i++)
+                if (line[2] == textData.GuidID.Value)
                 {
-                    foreach (var languageType in (LanguageType[]) Enum.GetValues(typeof(LanguageType)))
+                    for (int i = 0; i < line.Count; i++)
                     {
-                        if (headers[i] != languageType.ToString()) continue;
-                        
-                        if (line[0].Contains(_name))
-                            nodeData.CharacterName.Find(text => text.LanguageType == languageType).LanguageGenericType = line[i];
-                        else
-                            nodeData.Texts.Find(text => text.LanguageType == languageType).LanguageGenericType = line[i];
+                        foreach (var languageType in (LanguageType[]) Enum.GetValues(typeof(LanguageType)))
+                        {
+                            if (headers[i] == languageType.ToString())
+                            {
+                                textData.Text.Find(x => x.LanguageType == languageType).LanguageGenericType = line[i];
+                            }
+                        }
                     }
                 }
             });
         }
 
-        private void LoadIntoNodePort(List<List<string>> result, List<string> headers, DialogueNodePort nodePort)
+        private void LoadIntoChoiceNode(List<List<string>> result, List<string> headers, ChoiceData nodeData)
         {
             result.ForEach(line =>
             {
-                if (!line[0].Contains(nodePort.PortGuid)) return;
-                for (int i = 0; i < line.Count; i++)
+                if (line[1] == nodeData.NodeGuid)
                 {
-                    foreach (var languageType in (LanguageType[]) Enum.GetValues(typeof(LanguageType)))
+                    for (int i = 0; i < line.Count; i++)
                     {
-                        if (headers[i] == languageType.ToString())
+                        foreach (var languageType in (LanguageType[]) Enum.GetValues(typeof(LanguageType)))
                         {
-                            nodePort.TextLanguages.Find(text => text.LanguageType == languageType).LanguageGenericType = line[i];
+                            if (headers[i] == languageType.ToString())
+                            {
+                                nodeData.Text.Find(x => x.LanguageType == languageType).LanguageGenericType = line[i];
+                            }
                         }
                     }
                 }

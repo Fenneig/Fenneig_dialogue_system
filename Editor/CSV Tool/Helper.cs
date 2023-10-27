@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Fenneig_Dialogue_Editor.Dialogue_Editor.Runtime.SO;
+using Fenneig_Dialogue_Editor.Runtime.SO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Fenneig_Dialogue_Editor.Dialogue_Editor.CSV_Tool
+namespace Fenneig_Dialogue_Editor.CSV_Tool
 {
     public static class Helper
     {
+        // Old way of find Dialogue Containers.
         public static List<T> FindAllObjectFromResources<T>()
         {
             List<T> returnList = new();

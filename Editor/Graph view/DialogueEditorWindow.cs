@@ -1,6 +1,6 @@
 using System;
-using Fenneig_Dialogue_Editor.Dialogue_Editor.Runtime.Enums;
-using Fenneig_Dialogue_Editor.Dialogue_Editor.Runtime.SO;
+using Fenneig_Dialogue_Editor.Runtime.Enums;
+using Fenneig_Dialogue_Editor.Runtime.SO;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEditor.UIElements;
@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Object = UnityEngine.Object;
 
-namespace Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Graph_view
+namespace Fenneig_Dialogue_Editor.Editor.Graph_view
 {
     public class DialogueEditorWindow : EditorWindow
     {
@@ -19,6 +19,7 @@ namespace Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Graph_view
         private LanguageType _currentLanguage = LanguageType.English;                  
         private ToolbarMenu _languageDropdownMenu;
         private Label _nameOfDialogueContainer;
+        private string _editorWindowStyleSheet = "USS/EditorWindow/EditorWindowStyleSheet";
 
         public LanguageType CurrentLanguage => _currentLanguage;
 
@@ -60,13 +61,15 @@ namespace Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Graph_view
             rootVisualElement.Add(_graphView);
             _saveAndLoad = new DialogueSaveAndLoad(_graphView);
         }
+        
         /// <summary>
         /// Generate the toolbar you will see in the top left of the dialogue editor window.
         /// </summary>
         private void GenerateToolBar()
         {
+            
             // Find and load the styleSheet for graph view.
-            StyleSheet styleSheet = Resources.Load<StyleSheet>("GraphViewStyleSheet");
+            StyleSheet styleSheet = Resources.Load<StyleSheet>(_editorWindowStyleSheet);
             // Add the styleSheet for graph view.
             rootVisualElement.styleSheets.Add(styleSheet);
             
@@ -101,7 +104,7 @@ namespace Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Graph_view
 
             toolbar.Add(_languageDropdownMenu);
             
-            //CharacterName of current DialogueContainer you have open
+            //CharacterName of current DialogueContainer opened dialogue.
             _nameOfDialogueContainer = new Label("");
             toolbar.Add(_nameOfDialogueContainer);
             _nameOfDialogueContainer.AddToClassList("nameOfDialogueContainer");
@@ -114,7 +117,7 @@ namespace Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Graph_view
             if (_currentDialogueContainer != null)
             {
                 Language(LanguageType.English);
-                _nameOfDialogueContainer.text = "CharacterName:   " + _currentDialogueContainer.name;
+                _nameOfDialogueContainer.text = "Container name:   " + _currentDialogueContainer.name;
                 _saveAndLoad.Load(_currentDialogueContainer);
             }
         }

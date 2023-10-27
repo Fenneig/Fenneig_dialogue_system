@@ -10,4 +10,4 @@ How to use:
     2. Create other nodes and fill the information in it
     3. Link nodes with each other
     4. Click "Save" button
-3. Create some scripts that use container data
+3. Create some scripts that use container data (more info later)

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Nodes;
+using Fenneig_Dialogue_Editor.Editor.Nodes;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Graph_view
+namespace Fenneig_Dialogue_Editor.Editor.Graph_view
 {
     public class NodeSearchWindow : ScriptableObject, ISearchWindowProvider
     {
@@ -33,6 +33,7 @@ namespace Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Graph_view
                 AddNodeSearch("Start", new StartNode()),
                 AddNodeSearch("Dialogue", new DialogueNode()),
                 AddNodeSearch("Branch", new BranchNode()),
+                AddNodeSearch("Choice", new ChoiceNode()),
                 AddNodeSearch("Event", new EventNode()),
                 AddNodeSearch("End", new EndNode())
             };
@@ -69,6 +70,9 @@ namespace Fenneig_Dialogue_Editor.Dialogue_Editor.Editor.Graph_view
                     return true;
                 case BranchNode: 
                     _graphView.AddElement(_graphView.CreateBranchNode(position));
+                    return true;
+                case ChoiceNode: 
+                    _graphView.AddElement(_graphView.CreateChoiceNode(position));
                     return true;
                 case EventNode: 
                     _graphView.AddElement(_graphView.CreateEventNode(position));
