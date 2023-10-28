@@ -52,7 +52,26 @@ namespace Fenneig_Dialogue_Editor.CSV_Tool
                         AppendToFile(texts);
                     }
                     
-                    //TODO: Add ability to save character name
+                    foreach (DialogueDataName dataName in nodeData.DialogueDataNames)
+                    {
+                        List<string> texts = new List<string>
+                        {
+                            dialogueContainer.name,
+                            nodeData.NodeGuid,
+                            dataName.GuidID.Value
+                        };
+
+                        foreach (LanguageType languageType in (LanguageType[]) Enum.GetValues(typeof(LanguageType)))
+                        {
+                            string tmp = dataName.CharacterName.Find(language => language.LanguageType == languageType)
+                                .LanguageGenericType.Replace("\"", "\"\"");
+                            texts.Add($"\"{tmp}\"");
+                        }
+
+                        AppendToFile(texts);
+                    }
+                    
+                    
                 }
                 foreach (ChoiceData nodeData in dialogueContainer.ChoiceData)
                 {

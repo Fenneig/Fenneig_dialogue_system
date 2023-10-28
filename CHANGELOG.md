@@ -1,3 +1,9 @@
+## [2.0.1]
+
+### Update
+
+- Add ability to save and load names to/from CSV
+
 ## [2.0.0]
 
 ### Update

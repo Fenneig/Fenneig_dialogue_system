@@ -249,6 +249,15 @@ namespace Fenneig_Dialogue_Editor.Editor.Nodes
 
             boxContainer.Add(textField);
         }
+        
+        private void AddTextField(DialogueDataName container, Box boxContainer)
+        {
+            TextField textField = GetNewTextFieldTextLanguage(container.CharacterName, "Text area", "TextBox");
+
+            container.TextField = textField;
+
+            boxContainer.Add(textField);
+        }
 
         private void AddAudioClips(DialogueDataText container, Box boxContainer)
         {
@@ -305,25 +314,43 @@ namespace Fenneig_Dialogue_Editor.Editor.Nodes
 
         public void AddCharacterName(DialogueDataName dataName = null)
         {
-            DialogueDataName dialogueDataName = new();
-            if (dataName != null)
-            {
-                dialogueDataName.CharacterName.Value = dataName.CharacterName.Value;
-            }
-            DialogueData.DialogueDataBaseContainers.Add(dialogueDataName);
+            DialogueDataName newDialogueDataName = new();
+            DialogueData.DialogueDataBaseContainers.Add(newDialogueDataName);
 
             Box boxContainer = new();
             boxContainer.AddToClassList("CharacterNameBox");
             
-            AddLabelAndButtons(dialogueDataName, boxContainer, "Name", "NameColor");
-            AddTextFieldCharacterName(dialogueDataName, boxContainer);
+            AddLabelAndButtons(newDialogueDataName, boxContainer, "Name", "NameColor");
+            AddTextFieldCharacterName(newDialogueDataName, boxContainer);
+            
+            if (dataName != null)
+            {
+                newDialogueDataName.GuidID.Value = dataName.GuidID.Value;
+                dataName.CharacterName.ForEach(nameInData =>
+                {
+                    newDialogueDataName.CharacterName.ForEach(nameInContainer =>
+                    {
+                        if (nameInContainer.LanguageType == nameInData.LanguageType)
+                        {
+                            nameInContainer.LanguageGenericType = nameInData.LanguageGenericType;
+                        }
+                    });
+                });
+            }
+            else
+            {
+                newDialogueDataName.GuidID.Value = Guid.NewGuid().ToString();
+            }
 
+            ReloadLanguage();
             mainContainer.Add(boxContainer);
         }
 
         private void AddTextFieldCharacterName(DialogueDataName container, Box boxContainer)
         {
-            TextField textField = GetNewTextField(container.CharacterName, "Name", "CharacterName");
+            TextField textField = GetNewTextFieldTextLanguage(container.CharacterName, "Name", "CharacterName");
+
+            container.TextField = textField;
             
             boxContainer.Add(textField);
         }

@@ -34,6 +34,11 @@ namespace Fenneig_Dialogue_Editor.CSV_Tool
                         {
                             LoadIntoDialogueNodeText(table, headers, textData);
                         });
+                        
+                        nodeData.DialogueDataNames.ForEach(nameData =>
+                        {
+                            LoadIntoNameNodeText(table, headers, nameData);
+                        });
                     });
 
                     dialogueContainer.ChoiceData.ForEach(nodeData => { LoadIntoChoiceNode(table, headers, nodeData); });
@@ -60,6 +65,26 @@ namespace Fenneig_Dialogue_Editor.CSV_Tool
                             if (headers[i] == languageType.ToString())
                             {
                                 textData.Text.Find(x => x.LanguageType == languageType).LanguageGenericType = line[i];
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        private void LoadIntoNameNodeText(List<List<string>> table, List<string> headers, DialogueDataName nameData)
+        {
+            table.ForEach(line =>
+            {
+                if (line[2] == nameData.GuidID.Value)
+                {
+                    for (int i = 0; i < line.Count; i++)
+                    {
+                        foreach (var languageType in (LanguageType[]) Enum.GetValues(typeof(LanguageType)))
+                        {
+                            if (headers[i] == languageType.ToString())
+                            {
+                                nameData.CharacterName.Find(x => x.LanguageType == languageType).LanguageGenericType = line[i];
                             }
                         }
                     }

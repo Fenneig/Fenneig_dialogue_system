@@ -29,7 +29,9 @@ namespace Fenneig_Dialogue_Editor.Runtime.SO.Dialogue
     [Serializable]
     public class DialogueDataName : DialogueDataBaseContainer
     {
-        public ContainerString CharacterName = new();
+        public TextField TextField { get; set; }
+        public ContainerString GuidID = new();
+        public List<LanguageGeneric<string>> CharacterName = new();
     }
 
     [Serializable]

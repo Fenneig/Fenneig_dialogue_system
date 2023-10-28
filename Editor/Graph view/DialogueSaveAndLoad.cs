@@ -122,34 +122,45 @@ namespace Fenneig_Dialogue_Editor.Editor.Graph_view
             
             node.DialogueData.DialogueDataBaseContainers.ForEach(baseContainer =>
             {
-                if (baseContainer is DialogueDataName nameData)
+                switch (baseContainer)
                 {
-                    DialogueDataName dataToAdd = new();
-                    dataToAdd.ID.Value = nameData.ID.Value;
-                    dataToAdd.CharacterName.Value = nameData.CharacterName.Value;
+                    case DialogueDataName nameData:
+                    {
+                        DialogueDataName dataToAdd = new()
+                        {
+                            ID = { Value = nameData.ID.Value},
+                            GuidID = { Value = nameData.GuidID.Value },
+                            CharacterName = nameData.CharacterName
+                        };
 
-                    dialogueNodeData.DialogueDataNames.Add(dataToAdd);
-                }
+                        dialogueNodeData.DialogueDataNames.Add(dataToAdd);
+                        break;
+                    }
+                    case DialogueDataText textData:
+                    {
+                        DialogueDataText dataToAdd = new()
+                        {
+                            ID = { Value = textData.ID.Value },
+                            GuidID = { Value = textData.GuidID.Value },
+                            Text = textData.Text,
+                            AudioClips = textData.AudioClips
+                        };
 
-                if (baseContainer is DialogueDataText textData)
-                {
-                    DialogueDataText dataToAdd = new();
-                    dataToAdd.ID.Value = textData.ID.Value;
-                    dataToAdd.GuidID.Value = textData.GuidID.Value;
-                    dataToAdd.Text = textData.Text;
-                    dataToAdd.AudioClips = textData.AudioClips;
+                        dialogueNodeData.DialogueDataTexts.Add(dataToAdd);
+                        break;
+                    }
+                    case DialogueDataImage imageData:
+                    {
+                        DialogueDataImage dataToAdd = new()
+                        {
+                            ID = { Value = imageData.ID.Value },
+                            LeftSprite = { Value = imageData.LeftSprite.Value },
+                            RightSprite = { Value = imageData.RightSprite.Value }
+                        };
 
-                    dialogueNodeData.DialogueDataTexts.Add(dataToAdd);
-                }
-                
-                if (baseContainer is DialogueDataImage imageData)
-                {
-                    DialogueDataImage dataToAdd = new();
-                    dataToAdd.ID.Value = imageData.ID.Value;
-                    dataToAdd.LeftSprite.Value = imageData.LeftSprite.Value;
-                    dataToAdd.RightSprite.Value = imageData.RightSprite.Value;
-
-                    dialogueNodeData.DialogueDataImages.Add(dataToAdd);
+                        dialogueNodeData.DialogueDataImages.Add(dataToAdd);
+                        break;
+                    }
                 }
             });
             
