@@ -1,4 +1,3 @@
-﻿using System;
 using Fenneig_Dialogue_Editor.Editor.Graph_view;
 using Fenneig_Dialogue_Editor.Runtime.NodesData;
 using Fenneig_Dialogue_Editor.Runtime.SO.Dialogue;
@@ -12,7 +11,7 @@ namespace Fenneig_Dialogue_Editor.Editor.Nodes
     public class EventNode : BaseNode
     {
         private const string EVENT_NODE_STYLE_SHEET = "USS/Nodes/EventNodeStyleSheet";
-        public EventData EventData { get; set; } = new EventData();
+        public EventData EventData { get; } = new();
 
         public EventNode() { }
 
@@ -42,13 +41,13 @@ namespace Fenneig_Dialogue_Editor.Editor.Nodes
             AddStringModifierEventBuild(EventData.EventDataStringModifiers, stringEvent);
         }
 
-        public void AddScriptableEvent(ContainerDialogueEventSO existcontainerDialogueEvent = null)
+        public void AddScriptableEvent(ContainerDialogueEventSO existContainerDialogueEvent = null)
         {
             ContainerDialogueEventSO containerDialogueEventSO = new();
 
-            if (existcontainerDialogueEvent != null)
+            if (existContainerDialogueEvent != null)
             {
-                containerDialogueEventSO.DialogueEventSO = existcontainerDialogueEvent.DialogueEventSO;
+                containerDialogueEventSO.DialogueEventSO = existContainerDialogueEvent.DialogueEventSO;
             }
             EventData.ContainerDialogueEventSOs.Add(containerDialogueEventSO);
 

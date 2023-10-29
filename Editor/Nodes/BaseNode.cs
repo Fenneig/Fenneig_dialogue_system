@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Fenneig_Dialogue_Editor.Editor.Graph_view;
+using Fenneig_Dialogue_Editor.Editor.String_Tool;
 using Fenneig_Dialogue_Editor.Runtime.Enums;
 using Fenneig_Dialogue_Editor.Runtime.NodesData;
 using Fenneig_Dialogue_Editor.Runtime.SO;
@@ -153,6 +154,31 @@ namespace Fenneig_Dialogue_Editor.Editor.Nodes
             SetPlaceholderText(textField, placeholderText);
             
             return textField;
+        }
+
+        /// <summary>
+        /// Get a new Text field.
+        /// </summary>
+        /// <param name="inputValue">ContainerString that need to be set into the TextField.</param>
+        /// <param name="placeholderText">The text that will be displayed if the text field is empty.</param>
+        /// <param name="USS01">USS class add to the UI element.</param>
+        /// <param name="USS02">USS class add to the UI element.</param>
+        protected PopupField<string> GetNewEventTextField(ContainerEventString inputValue, string placeholderText, string USS01 = "", string USS02 = "")
+        {
+            var eventStringSO = StringEventDefinition.I.StringEventsForEditor;
+
+            PopupField<string> dropdownMenu = new PopupField<string>(eventStringSO.ToList(), 0);
+
+            dropdownMenu.RegisterValueChangedCallback(value =>
+            {
+                inputValue.Value = value.newValue;
+            });
+            dropdownMenu.SetValueWithoutNotify(inputValue.Value);
+            
+            dropdownMenu.AddToClassList(USS01);
+            dropdownMenu.AddToClassList(USS02);
+            
+            return dropdownMenu;
         }
 
         /// <summary>
@@ -436,7 +462,7 @@ namespace Fenneig_Dialogue_Editor.Editor.Nodes
             boxContainer.AddToClassList("StringEventBox");
             boxFloatField.AddToClassList("StringEventBoxFloatField");
 
-            TextField textField = GetNewTextField(tempStringModifier.StringEventText, "String event", "StringEventText");
+            PopupField<string> textField = GetNewEventTextField(tempStringModifier.StringEventText, "String event", "StringEventText");
             FloatField floatField = GetNewFloatField(tempStringModifier.Number, "StringEventInt");
 
             Action ShowHideAction = () => ShowHideStringEventModifierType(tempStringModifier.StringEventModifierType.Value, boxFloatField);
@@ -483,7 +509,7 @@ namespace Fenneig_Dialogue_Editor.Editor.Nodes
             boxContainer.AddToClassList("StringEventBox");
             boxFloatField.AddToClassList("StringEventBoxFloatField");
             
-            TextField textField = GetNewTextField(tempStringCondition.StringEventText, "String event", "StringEventText");
+            PopupField<string> textField = GetNewEventTextField(tempStringCondition.StringEventText, "String event", "StringEventText");
             FloatField floatField = GetNewFloatField(tempStringCondition.Number, "StringEventInt");
 
             Action ShowHideAction = () => ShowHideStringEventConditionType(tempStringCondition.StringEventConditionType.Value, boxFloatField);

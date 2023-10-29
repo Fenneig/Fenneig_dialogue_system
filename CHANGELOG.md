@@ -1,3 +1,9 @@
+## [2.0.2]
+
+### Update
+
+- String events instead of string now depence from scriptable object that holds in resources file
+
 ## [2.0.1]
 
 ### Update
