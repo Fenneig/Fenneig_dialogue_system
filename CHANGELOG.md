@@ -1,3 +1,10 @@
+## [2.0.3]
+
+### Update
+
+- Fixed bug that prevents to create event string when string event scriptable object not created yet
+- Fixed bug that create wrong object when try to create dialogue container
+
 ## [2.0.2]
 
 ### Update

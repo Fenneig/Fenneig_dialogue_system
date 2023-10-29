@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -5,8 +6,8 @@ namespace Fenneig_Dialogue_Editor.Editor.String_Tool
 {
     public class StringEventDefinition : ScriptableObject
     {
-        [SerializeField] private string[] _stringEventsForEditor;
-        public string[] StringEventsForEditor => _stringEventsForEditor;
+        [SerializeField] private List<string> _stringEventsForEditor = new ();
+        public List<string> StringEventsForEditor => _stringEventsForEditor;
 
         private static StringEventDefinition _instance;
 
@@ -21,6 +22,9 @@ namespace Fenneig_Dialogue_Editor.Editor.String_Tool
                 _instance = CreateInstance<StringEventDefinition>();
 
                 AssetDatabase.CreateAsset(_instance, "Assets/Resources/String event definition.asset");
+
+                _instance._stringEventsForEditor = new List<string>();
+                
                 AssetDatabase.SaveAssets();
             }
 

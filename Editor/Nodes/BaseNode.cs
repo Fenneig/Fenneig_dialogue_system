@@ -160,12 +160,16 @@ namespace Fenneig_Dialogue_Editor.Editor.Nodes
         /// Get a new Text field.
         /// </summary>
         /// <param name="inputValue">ContainerString that need to be set into the TextField.</param>
-        /// <param name="placeholderText">The text that will be displayed if the text field is empty.</param>
         /// <param name="USS01">USS class add to the UI element.</param>
         /// <param name="USS02">USS class add to the UI element.</param>
-        protected PopupField<string> GetNewEventTextField(ContainerEventString inputValue, string placeholderText, string USS01 = "", string USS02 = "")
+        protected PopupField<string> GetNewEventTextField(ContainerEventString inputValue, string USS01 = "", string USS02 = "")
         {
             var eventStringSO = StringEventDefinition.I.StringEventsForEditor;
+
+            if (eventStringSO.Count == 0)
+            {
+                eventStringSO.Add("Empty");
+            }
 
             PopupField<string> dropdownMenu = new PopupField<string>(eventStringSO.ToList(), 0);
 
@@ -462,7 +466,7 @@ namespace Fenneig_Dialogue_Editor.Editor.Nodes
             boxContainer.AddToClassList("StringEventBox");
             boxFloatField.AddToClassList("StringEventBoxFloatField");
 
-            PopupField<string> textField = GetNewEventTextField(tempStringModifier.StringEventText, "String event", "StringEventText");
+            PopupField<string> textField = GetNewEventTextField(tempStringModifier.StringEventText, "StringEventText");
             FloatField floatField = GetNewFloatField(tempStringModifier.Number, "StringEventInt");
 
             Action ShowHideAction = () => ShowHideStringEventModifierType(tempStringModifier.StringEventModifierType.Value, boxFloatField);
@@ -509,7 +513,7 @@ namespace Fenneig_Dialogue_Editor.Editor.Nodes
             boxContainer.AddToClassList("StringEventBox");
             boxFloatField.AddToClassList("StringEventBoxFloatField");
             
-            PopupField<string> textField = GetNewEventTextField(tempStringCondition.StringEventText, "String event", "StringEventText");
+            PopupField<string> textField = GetNewEventTextField(tempStringCondition.StringEventText, "StringEventText");
             FloatField floatField = GetNewFloatField(tempStringCondition.Number, "StringEventInt");
 
             Action ShowHideAction = () => ShowHideStringEventConditionType(tempStringCondition.StringEventConditionType.Value, boxFloatField);
