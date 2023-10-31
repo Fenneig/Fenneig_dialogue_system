@@ -1,3 +1,9 @@
+## [2.0.4]
+
+### Update
+
+- Add a license
+
 ## [2.0.3]
 
 ### Update
