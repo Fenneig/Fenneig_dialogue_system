@@ -1,3 +1,9 @@
+## [2.0.6]
+
+### Add
+
+- Add sample with demo scene
+
 ## [2.0.5]
 
 ### Update
