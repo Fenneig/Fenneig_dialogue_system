@@ -1,3 +1,9 @@
+## [2.0.5]
+
+### Update
+
+- Add ability to use in 2021 version of unity
+
 ## [2.0.4]
 
 ### Update

@@ -1,9 +1,9 @@
 {
     "name": "com.fennec-burrow-games-studio.fenneig-dialogue-system",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "displayName": "Fenneig dialogue system",
     "description": "Package includes tools for creating dialogues in game",
-    "unity": "2022.3",
+    "unity": "2021.3",
     "unityRelease": "0b5",
     "documentationUrl": "https://github.com/Fenneig/Fenneig_dialogue_system/blob/main/readme.md",
     "author": {
