@@ -1,6 +1,6 @@
 {
     "name": "com.fennec-burrow-games-studio.fenneig-dialogue-system",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "displayName": "Fenneig dialogue system",
     "description": "Package includes tools for creating dialogues in game",
     "unity": "2021.3",
@@ -10,5 +10,12 @@
       "name": "Fenneig",
       "email": "koie.dubna@gmail.com",
       "url": "https://github.com/Fenneig"
-    }
-  }
+    },
+    "samples": [
+      {
+        "displayName": "Sample scene",
+        "description": "Contains sample scene of using this system",
+        "path": "Samples~/SampleScene"
+      }
+    ]
+}

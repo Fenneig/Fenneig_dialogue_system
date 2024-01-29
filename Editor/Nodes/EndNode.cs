@@ -1,7 +1,9 @@
 ﻿using Fenneig_Dialogue_Editor.Editor.Graph_view;
 using Fenneig_Dialogue_Editor.Runtime.SO.Dialogue;
 using UnityEngine;
-#if UNITY_EDITOR
+#if UNITY_2022_1_OR_NEWER
+using UnityEngine.UIElements;
+#else
 using UnityEditor.UIElements;
 #endif
 
@@ -16,8 +18,7 @@ namespace Fenneig_Dialogue_Editor.Editor.Nodes
         {
         }
 
-        public EndNode(Vector2 position, DialogueEditorWindow editorWindow, DialogueGraphView graphView) : base(
-            position, editorWindow, graphView, END_NODE_STYLE_SHEET)
+        public EndNode(Vector2 position, DialogueEditorWindow editorWindow, DialogueGraphView graphView) : base(position, editorWindow, graphView, END_NODE_STYLE_SHEET)
         {
             title = "End";
 
@@ -27,10 +28,7 @@ namespace Fenneig_Dialogue_Editor.Editor.Nodes
 
         private void MakeMainContainer()
         {
-#if UNITY_EDITOR
             EnumField enumField = GetNewEnumFieldEndNodeType(EndData.EndNodeType);
-#endif
-            
             mainContainer.Add(enumField);
             RefreshExpandedState();
         }

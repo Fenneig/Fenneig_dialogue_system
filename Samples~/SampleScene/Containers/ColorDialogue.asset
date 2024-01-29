@@ -1,0 +1,501 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71a25e0e4c52c8e4393e1a5721365c2c, type: 3}
+  m_Name: ColorDialogue
+  m_EditorClassIdentifier: 
+  NodeLinkData:
+  - BaseNodeGuid: 1ce4eea4-45cb-47cd-a67d-b53892439a57
+    BasePortGuid: Output
+    TargetNodeGuid: 933ccce2-cdc6-410a-ba97-0d3400eaaf8d
+    TargetPortGuid: Input
+  - BaseNodeGuid: 933ccce2-cdc6-410a-ba97-0d3400eaaf8d
+    BasePortGuid: False
+    TargetNodeGuid: f43196e0-8361-4c13-957d-5aa4dadce594
+    TargetPortGuid: Input
+  - BaseNodeGuid: 933ccce2-cdc6-410a-ba97-0d3400eaaf8d
+    BasePortGuid: True
+    TargetNodeGuid: 50f9814b-0cc4-466a-ba0f-9944c719aae5
+    TargetPortGuid: Input
+  - BaseNodeGuid: 528c0eca-e83d-46d0-9845-a90590dcdab0
+    BasePortGuid: Output
+    TargetNodeGuid: 4fd6e384-d9c8-4470-99ed-7dc9e7b4e946
+    TargetPortGuid: Input
+  - BaseNodeGuid: 729f9532-4c47-4943-a6b4-fe7670defd08
+    BasePortGuid: Output
+    TargetNodeGuid: 7d03ad87-f29d-4973-a359-a04e4ae84ec5
+    TargetPortGuid: Input
+  - BaseNodeGuid: a13dfef4-57a9-4585-9935-9da485a20714
+    BasePortGuid: Output
+    TargetNodeGuid: 5123496b-069a-46ca-b50c-0375d3e42945
+    TargetPortGuid: Input
+  - BaseNodeGuid: c90173c0-22bf-4139-870f-105362d42797
+    BasePortGuid: Output
+    TargetNodeGuid: c9b77e6d-7d9a-45aa-8288-497b8de8cfb5
+    TargetPortGuid: Input
+  - BaseNodeGuid: e0f4a291-f60e-459d-b57a-a50e1fe63918
+    BasePortGuid: Output
+    TargetNodeGuid: cb501b84-4d99-4c3f-9eef-d33c9799a568
+    TargetPortGuid: Input
+  - BaseNodeGuid: 3534290f-cfd5-4e28-98e3-6b66f57e361b
+    BasePortGuid: Output
+    TargetNodeGuid: e27a6324-891d-4050-b4a1-70b1f264ad00
+    TargetPortGuid: Input
+  - BaseNodeGuid: e27a6324-891d-4050-b4a1-70b1f264ad00
+    BasePortGuid: Output
+    TargetNodeGuid: 7d03ad87-f29d-4973-a359-a04e4ae84ec5
+    TargetPortGuid: Input
+  - BaseNodeGuid: 4fd6e384-d9c8-4470-99ed-7dc9e7b4e946
+    BasePortGuid: Output
+    TargetNodeGuid: 7d03ad87-f29d-4973-a359-a04e4ae84ec5
+    TargetPortGuid: Input
+  - BaseNodeGuid: c9b77e6d-7d9a-45aa-8288-497b8de8cfb5
+    BasePortGuid: Output
+    TargetNodeGuid: 1fc86bf6-adc2-4e56-bbb8-086d02f25b43
+    TargetPortGuid: Input
+  - BaseNodeGuid: 34414cb7-5636-4c37-b2b3-8809f668769d
+    BasePortGuid: Output
+    TargetNodeGuid: 50f9814b-0cc4-466a-ba0f-9944c719aae5
+    TargetPortGuid: Input
+  - BaseNodeGuid: f43196e0-8361-4c13-957d-5aa4dadce594
+    BasePortGuid: Continue
+    TargetNodeGuid: 34414cb7-5636-4c37-b2b3-8809f668769d
+    TargetPortGuid: Input
+  - BaseNodeGuid: 50f9814b-0cc4-466a-ba0f-9944c719aae5
+    BasePortGuid: 5b31c306-1bd6-48f9-91b9-7c29e365567a
+    TargetNodeGuid: 729f9532-4c47-4943-a6b4-fe7670defd08
+    TargetPortGuid: Input
+  - BaseNodeGuid: 50f9814b-0cc4-466a-ba0f-9944c719aae5
+    BasePortGuid: fde660e8-94ef-4c6a-ad64-432807ba135c
+    TargetNodeGuid: 3534290f-cfd5-4e28-98e3-6b66f57e361b
+    TargetPortGuid: Input
+  - BaseNodeGuid: 50f9814b-0cc4-466a-ba0f-9944c719aae5
+    BasePortGuid: 94f6b553-ab15-4803-9b0a-fa0826e16c5a
+    TargetNodeGuid: 528c0eca-e83d-46d0-9845-a90590dcdab0
+    TargetPortGuid: Input
+  - BaseNodeGuid: 7d03ad87-f29d-4973-a359-a04e4ae84ec5
+    BasePortGuid: Continue
+    TargetNodeGuid: d2214bc7-1688-4342-bf9b-77693c7b121f
+    TargetPortGuid: Input
+  - BaseNodeGuid: d2214bc7-1688-4342-bf9b-77693c7b121f
+    BasePortGuid: c7ce4e66-e3f4-4c64-b1f0-14bc12c1104b
+    TargetNodeGuid: e0f4a291-f60e-459d-b57a-a50e1fe63918
+    TargetPortGuid: Input
+  - BaseNodeGuid: d2214bc7-1688-4342-bf9b-77693c7b121f
+    BasePortGuid: 4b32d1f1-c82f-4f38-9908-88daeb920b7b
+    TargetNodeGuid: a13dfef4-57a9-4585-9935-9da485a20714
+    TargetPortGuid: Input
+  - BaseNodeGuid: d2214bc7-1688-4342-bf9b-77693c7b121f
+    BasePortGuid: 1843f04f-319c-413f-9b6d-d5dc0e4d5668
+    TargetNodeGuid: c90173c0-22bf-4139-870f-105362d42797
+    TargetPortGuid: Input
+  StartData:
+  - NodeGuid: 1ce4eea4-45cb-47cd-a67d-b53892439a57
+    Position: {x: 309, y: 174}
+  DialogueData:
+  - NodeGuid: f43196e0-8361-4c13-957d-5aa4dadce594
+    Position: {x: 863, y: 250}
+    DialogueDataNames:
+    - ID:
+        Value: 1
+      GuidID:
+        Value: c1462e5a-986f-428d-88cc-bb87febe4d42
+      CharacterName:
+      - LanguageType: 1
+        LanguageGenericType: Jozephine
+      - LanguageType: 2
+        LanguageGenericType: 
+    DialogueDataTexts:
+    - ID:
+        Value: 2
+      GuidID:
+        Value: e4accd76-b495-4ebf-b899-80660ef02e1f
+      Text:
+      - LanguageType: 1
+        LanguageGenericType: Hey you!
+      - LanguageType: 2
+        LanguageGenericType: 
+      AudioClips:
+      - LanguageType: 1
+        LanguageGenericType: {fileID: 0}
+      - LanguageType: 2
+        LanguageGenericType: {fileID: 0}
+    - ID:
+        Value: 3
+      GuidID:
+        Value: 69d65573-82e5-41c7-a49e-20e1824c2bde
+      Text:
+      - LanguageType: 1
+        LanguageGenericType: Good to see you!
+      - LanguageType: 2
+        LanguageGenericType: 
+      AudioClips:
+      - LanguageType: 1
+        LanguageGenericType: {fileID: 0}
+      - LanguageType: 2
+        LanguageGenericType: {fileID: 0}
+    - ID:
+        Value: 4
+      GuidID:
+        Value: 3b468c43-be64-4251-9d8d-029bfea556d2
+      Text:
+      - LanguageType: 1
+        LanguageGenericType: Let's make some buiseness
+      - LanguageType: 2
+        LanguageGenericType: 
+      AudioClips:
+      - LanguageType: 1
+        LanguageGenericType: {fileID: 0}
+      - LanguageType: 2
+        LanguageGenericType: {fileID: 0}
+    DialogueDataImages:
+    - ID:
+        Value: 0
+      LeftSprite:
+        Value: {fileID: 21300000, guid: 96f49f601a518194d9e23d5327249848, type: 3}
+      RightSprite:
+        Value: {fileID: 21300000, guid: 7315795d5b3c7914a9fef4bc73c7e295, type: 3}
+    DialogueDataPorts: []
+  - NodeGuid: 50f9814b-0cc4-466a-ba0f-9944c719aae5
+    Position: {x: 1627, y: 176}
+    DialogueDataNames:
+    - ID:
+        Value: 1
+      GuidID:
+        Value: dacc5ffc-e7c5-4597-bf0e-bf27757eb968
+      CharacterName:
+      - LanguageType: 1
+        LanguageGenericType: Jozephine
+      - LanguageType: 2
+        LanguageGenericType: 
+    DialogueDataTexts:
+    - ID:
+        Value: 2
+      GuidID:
+        Value: 29e4f5d1-e773-4871-b901-e858819c41d9
+      Text:
+      - LanguageType: 1
+        LanguageGenericType: So whats up?
+      - LanguageType: 2
+        LanguageGenericType: 
+      AudioClips:
+      - LanguageType: 1
+        LanguageGenericType: {fileID: 0}
+      - LanguageType: 2
+        LanguageGenericType: {fileID: 0}
+    DialogueDataImages:
+    - ID:
+        Value: 0
+      LeftSprite:
+        Value: {fileID: 21300000, guid: 5640ff673b2910044bb1c7d669a67306, type: 3}
+      RightSprite:
+        Value: {fileID: 21300000, guid: 36544ddce5b38f24b821222ce9cb8275, type: 3}
+    DialogueDataPorts:
+    - ID:
+        Value: 0
+      PortGuid: 5b31c306-1bd6-48f9-91b9-7c29e365567a
+      InputGuid: 729f9532-4c47-4943-a6b4-fe7670defd08
+      OutputGuid: 50f9814b-0cc4-466a-ba0f-9944c719aae5
+    - ID:
+        Value: 0
+      PortGuid: fde660e8-94ef-4c6a-ad64-432807ba135c
+      InputGuid: 3534290f-cfd5-4e28-98e3-6b66f57e361b
+      OutputGuid: 50f9814b-0cc4-466a-ba0f-9944c719aae5
+    - ID:
+        Value: 0
+      PortGuid: 94f6b553-ab15-4803-9b0a-fa0826e16c5a
+      InputGuid: 528c0eca-e83d-46d0-9845-a90590dcdab0
+      OutputGuid: 50f9814b-0cc4-466a-ba0f-9944c719aae5
+  - NodeGuid: 7d03ad87-f29d-4973-a359-a04e4ae84ec5
+    Position: {x: 3088, y: 95}
+    DialogueDataNames:
+    - ID:
+        Value: 1
+      GuidID:
+        Value: 58f16952-39fd-4a0a-b7bc-2248d86127de
+      CharacterName:
+      - LanguageType: 1
+        LanguageGenericType: Jozephine
+      - LanguageType: 2
+        LanguageGenericType: 
+    - ID:
+        Value: 3
+      GuidID:
+        Value: 89f6bcf0-42ef-4666-85dc-01df15d175aa
+      CharacterName:
+      - LanguageType: 1
+        LanguageGenericType: Male
+      - LanguageType: 2
+        LanguageGenericType: 
+    DialogueDataTexts:
+    - ID:
+        Value: 2
+      GuidID:
+        Value: b222f7d5-4163-45d9-98ce-7cba95ba8ac5
+      Text:
+      - LanguageType: 1
+        LanguageGenericType: Anything else?
+      - LanguageType: 2
+        LanguageGenericType: 
+      AudioClips:
+      - LanguageType: 1
+        LanguageGenericType: {fileID: 0}
+      - LanguageType: 2
+        LanguageGenericType: {fileID: 0}
+    - ID:
+        Value: 4
+      GuidID:
+        Value: 6fcf70b1-247f-4782-a281-82a4a4bea9cb
+      Text:
+      - LanguageType: 1
+        LanguageGenericType: I don't think so
+      - LanguageType: 2
+        LanguageGenericType: 
+      AudioClips:
+      - LanguageType: 1
+        LanguageGenericType: {fileID: 0}
+      - LanguageType: 2
+        LanguageGenericType: {fileID: 0}
+    DialogueDataImages:
+    - ID:
+        Value: 0
+      LeftSprite:
+        Value: {fileID: 21300000, guid: 5640ff673b2910044bb1c7d669a67306, type: 3}
+      RightSprite:
+        Value: {fileID: 21300000, guid: 36544ddce5b38f24b821222ce9cb8275, type: 3}
+    DialogueDataPorts: []
+  - NodeGuid: d2214bc7-1688-4342-bf9b-77693c7b121f
+    Position: {x: 3457, y: 95}
+    DialogueDataNames:
+    - ID:
+        Value: 1
+      GuidID:
+        Value: 1b19f096-26ea-49a5-a67c-322ecffa095a
+      CharacterName:
+      - LanguageType: 1
+        LanguageGenericType: Jozephine
+      - LanguageType: 2
+        LanguageGenericType: 
+    DialogueDataTexts:
+    - ID:
+        Value: 2
+      GuidID:
+        Value: 386be997-e725-41f6-8935-b5cc04784d08
+      Text:
+      - LanguageType: 1
+        LanguageGenericType: So?
+      - LanguageType: 2
+        LanguageGenericType: 
+      AudioClips:
+      - LanguageType: 1
+        LanguageGenericType: {fileID: 0}
+      - LanguageType: 2
+        LanguageGenericType: {fileID: 0}
+    DialogueDataImages:
+    - ID:
+        Value: 0
+      LeftSprite:
+        Value: {fileID: 21300000, guid: 96f49f601a518194d9e23d5327249848, type: 3}
+      RightSprite:
+        Value: {fileID: 21300000, guid: 7315795d5b3c7914a9fef4bc73c7e295, type: 3}
+    DialogueDataPorts:
+    - ID:
+        Value: 0
+      PortGuid: 4b32d1f1-c82f-4f38-9908-88daeb920b7b
+      InputGuid: a13dfef4-57a9-4585-9935-9da485a20714
+      OutputGuid: d2214bc7-1688-4342-bf9b-77693c7b121f
+    - ID:
+        Value: 0
+      PortGuid: 1843f04f-319c-413f-9b6d-d5dc0e4d5668
+      InputGuid: c90173c0-22bf-4139-870f-105362d42797
+      OutputGuid: d2214bc7-1688-4342-bf9b-77693c7b121f
+    - ID:
+        Value: 0
+      PortGuid: c7ce4e66-e3f4-4c64-b1f0-14bc12c1104b
+      InputGuid: e0f4a291-f60e-459d-b57a-a50e1fe63918
+      OutputGuid: d2214bc7-1688-4342-bf9b-77693c7b121f
+  EventData:
+  - NodeGuid: e27a6324-891d-4050-b4a1-70b1f264ad00
+    Position: {x: 2525, y: 296}
+    EventDataStringModifiers:
+    - StringEventText:
+        Value: Money
+      Number:
+        Value: 50
+      StringEventModifierType:
+        Value: 4
+    ContainerDialogueEventSOs:
+    - DialogueEventSO: {fileID: 11400000, guid: f088a290771a09749abacb1ca238b0fc, type: 2}
+  - NodeGuid: 4fd6e384-d9c8-4470-99ed-7dc9e7b4e946
+    Position: {x: 2525, y: 499}
+    EventDataStringModifiers:
+    - StringEventText:
+        Value: Money
+      Number:
+        Value: 100
+      StringEventModifierType:
+        Value: 4
+    ContainerDialogueEventSOs:
+    - DialogueEventSO: {fileID: 11400000, guid: dd75d578223e3f34681253f166c4c784, type: 2}
+  - NodeGuid: c9b77e6d-7d9a-45aa-8288-497b8de8cfb5
+    Position: {x: 4271, y: 172}
+    EventDataStringModifiers:
+    - StringEventText:
+        Value: Money
+      Number:
+        Value: 50
+      StringEventModifierType:
+        Value: 3
+    - StringEventText:
+        Value: Health
+      Number:
+        Value: 50
+      StringEventModifierType:
+        Value: 3
+    ContainerDialogueEventSOs: []
+  - NodeGuid: 34414cb7-5636-4c37-b2b3-8809f668769d
+    Position: {x: 1226, y: 250}
+    EventDataStringModifiers:
+    - StringEventText:
+        Value: AlreadyTalked
+      Number:
+        Value: 0
+      StringEventModifierType:
+        Value: 1
+    ContainerDialogueEventSOs: []
+  EndData:
+  - NodeGuid: cb501b84-4d99-4c3f-9eef-d33c9799a568
+    Position: {x: 4356, y: 387}
+    EndNodeType:
+      Value: 1
+  - NodeGuid: 5123496b-069a-46ca-b50c-0375d3e42945
+    Position: {x: 4248, y: -17}
+    EndNodeType:
+      Value: 3
+  - NodeGuid: 1fc86bf6-adc2-4e56-bbb8-086d02f25b43
+    Position: {x: 4696, y: 172}
+    EndNodeType:
+      Value: 2
+  BranchData:
+  - NodeGuid: 933ccce2-cdc6-410a-ba97-0d3400eaaf8d
+    Position: {x: 445, y: 174}
+    TrueGuidNode: 50f9814b-0cc4-466a-ba0f-9944c719aae5
+    FalseGuidNode: f43196e0-8361-4c13-957d-5aa4dadce594
+    EventDataStringConditions:
+    - StringEventText:
+        Value: AlreadyTalked
+      Number:
+        Value: 0
+      StringEventConditionType:
+        Value: 1
+  ChoiceData:
+  - NodeGuid: 528c0eca-e83d-46d0-9845-a90590dcdab0
+    Position: {x: 2067, y: 499}
+    ChoiceStateType:
+      Value: 1
+    Text:
+    - LanguageType: 1
+      LanguageGenericType: I pay to color me
+    - LanguageType: 2
+      LanguageGenericType: 
+    AudioClips:
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    EventDataStringConditions:
+    - StringEventText:
+        Value: Money
+      Number:
+        Value: 100
+      StringEventConditionType:
+        Value: 4
+  - NodeGuid: 729f9532-4c47-4943-a6b4-fe7670defd08
+    Position: {x: 2085, y: 81}
+    ChoiceStateType:
+      Value: 1
+    Text:
+    - LanguageType: 1
+      LanguageGenericType: Not most
+    - LanguageType: 2
+      LanguageGenericType: 
+    AudioClips:
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    EventDataStringConditions: []
+  - NodeGuid: a13dfef4-57a9-4585-9935-9da485a20714
+    Position: {x: 3915, y: -17}
+    ChoiceStateType:
+      Value: 1
+    Text:
+    - LanguageType: 1
+      LanguageGenericType: Can we start over?
+    - LanguageType: 2
+      LanguageGenericType: 
+    AudioClips:
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    EventDataStringConditions: []
+  - NodeGuid: c90173c0-22bf-4139-870f-105362d42797
+    Position: {x: 3915, y: 172}
+    ChoiceStateType:
+      Value: 1
+    Text:
+    - LanguageType: 1
+      LanguageGenericType: Give me money and health!
+    - LanguageType: 2
+      LanguageGenericType: 
+    AudioClips:
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    EventDataStringConditions: []
+  - NodeGuid: e0f4a291-f60e-459d-b57a-a50e1fe63918
+    Position: {x: 3915, y: 339}
+    ChoiceStateType:
+      Value: 1
+    Text:
+    - LanguageType: 1
+      LanguageGenericType: Bye!
+    - LanguageType: 2
+      LanguageGenericType: 
+    AudioClips:
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    EventDataStringConditions: []
+  - NodeGuid: 3534290f-cfd5-4e28-98e3-6b66f57e361b
+    Position: {x: 2067, y: 296}
+    ChoiceStateType:
+      Value: 2
+    Text:
+    - LanguageType: 1
+      LanguageGenericType: I pay to color you
+    - LanguageType: 2
+      LanguageGenericType: 
+    AudioClips:
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    EventDataStringConditions:
+    - StringEventText:
+        Value: Money
+      Number:
+        Value: 50
+      StringEventConditionType:
+        Value: 4
